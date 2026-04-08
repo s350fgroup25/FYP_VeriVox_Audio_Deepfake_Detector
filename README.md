@@ -13,6 +13,10 @@ This project implements an **audio deepfake detection system** capable of identi
 - 📊 **Batch Evaluation**: Large-scale dataset evaluation with EER calculation  
 - 📈 **Result Visualization**: Generate detection reports and charts  
 
+## Introduction Video
+![VeriVox Audio Deepfake Detector Demo](https://img.youtube.com/vi/svC8c3vcg5Y/0.jpg)
+
+## Demo Video
 ---
 
 ## Project Structure
