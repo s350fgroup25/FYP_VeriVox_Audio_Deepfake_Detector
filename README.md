@@ -1,4 +1,4 @@
-# ASVspoof Audio Deepfake Detection System
+# Audio Deepfake Detection System
 
 A WavLM-based audio deepfake detection web application deployed on Raspberry Pi.
 
