@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video → Audio Converter</title>
+    <style>
+        body {
+            background: url('/static/images/audio-bg.jpg') no-repeat center center fixed;
+            background-size: cover; color: white;
+            font-family: "Segoe UI", sans-serif; margin: 0; padding: 20px;
+        }
+        .container {
+            max-width: 700px; margin: 0 auto;
+            background: rgba(0,0,0,0.8); padding: 40px;
+            border-radius: 25px; text-align: center;
+        }
+        h1 { font-size: 2.5rem; text-shadow: 3px 3px 6px #000; margin-bottom: 30px; }
+        .line { margin: 25px 0; padding: 20px; border: 2px dashed #ccc; border-radius: 12px; }
+        .line:hover { border-color: #1DB954; }
+        button { padding: 12px 24px; margin: 5px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+        .primary { background: #1DB954; color: white; }
+        .success { background: #28a745; color: white; }
+        .danger { background: #dc3545; color: white; }
+        .file-info { font-weight: bold; color: #1DB954; font-size: 1.1rem; margin: 10px 0; }
+        audio { width: 100%; margin: 10px 0; border-radius: 8px; }
+        #result { font-size: 28px; font-weight: bold; margin: 20px 0; }
+        .green { color: #28a745; }
+        .red { color: #dc3545; }
+        #status { color: #1DB954; font-style: italic; font-size: 1.1rem; }
+        input[type="file"] { width: 100%; padding: 12px; border-radius: 8px; }
+        .back-link {
+            position: fixed; top: 20px; left: 20px;
+            color: #1DB954; text-decoration: none;
+            font-size: 1.1rem; padding: 10px 20px;
+            background: rgba(0,0,0,0.5); border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">🏠 Home</a>
+    <div class="container">
+        <h1>🎬 Video → Audio + AI</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">MP4/MOV/WebM → WAV → AI Deepfake Analysis (1-click)</p>
+
+        <!-- Line 1: Choose video file -->
+        <div class="line" id="line1">
+            <label>📹 Choose Video File:</label><br>
+            <input type="file" id="fileInput" accept="video/*">
+            <div id="originalFileName"></div>
+        </div>
+
+        <!-- Line 2: Convert + Analyze button -->
+        <div class="line" id="line2" style="display:none;">
+            <button class="success" id="convertAnalyzeBtn">🎬 Convert + AI Analyze</button>
+            <div id="processStatus"></div>
+        </div>
+
+        <!-- Line 3: Play converted audio -->
+        <div class="line" id="line3" style="display:none;">
+            <h4>🎵 Extracted Audio (WAV)</h4>
+            <audio id="convertedPlayer" controls></audio>
+            <div id="convertedFileName" class="file-info"></div>
+        </div>
+
+        <!-- Line 4: Download -->
+        <div class="line" id="line4" style="display:none;">
+            <button class="primary" id="downloadBtn">💾 Download WAV</button>
+        </div>
+
+        <!-- Line 5: AI Result -->
+        <div class="line" id="line5" style="display:none;">
+            <div id="result"></div>
+            <div id="confidence"></div>
+        </div>
+    </div>
+    <script src="/static/ai-result.js"></script>
+    <script src="/static/video2audio.js"></script>
+</body>
+</html>
+
+
+
+

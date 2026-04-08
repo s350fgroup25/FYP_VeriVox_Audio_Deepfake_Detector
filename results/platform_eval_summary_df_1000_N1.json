@@ -1,0 +1,21 @@
+{
+  "dataset": {
+    "total": 64,
+    "real": 0,
+    "fake": 64,
+    "note": "\u53ea\u6709\u507d\u9020\u6578\u64da\u6e2c\u8a66"
+  },
+  "fake_analysis": {
+    "count": 64,
+    "min": 5.556054247790598e-07,
+    "max": 0.999998927116394,
+    "avg": 0.025729704979591247,
+    "correct_05": 0.984375,
+    "wrong_05": 0.015625
+  },
+  "recommendation": {
+    "threshold_05_accuracy": 0.984375,
+    "leakage_rate": 0.015625,
+    "status": "\u6a21\u578b\u6709\u6548\u4f46\u6709\u5c11\u91cf\u6f0f\u6aa2"
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quick Start - Batch Upload</title>
+    <style>
+        body {
+            background: url('/static/images/audio-bg.jpg') no-repeat center center fixed;
+            background-size: cover; color: white;
+            font-family: "Segoe UI", sans-serif; margin: 0; padding: 20px;
+        }
+        .container {
+            max-width: 800px; margin: 0 auto;
+            background: rgba(0,0,0,0.7); padding: 40px;
+            border-radius: 20px; text-align: center;
+        }
+        h2 { font-size: 2.5rem; text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
+        input[type="file"] {
+            width: 100%; padding: 15px; font-size: 1.2rem;
+            border-radius: 10px; border: none; margin-bottom: 20px;
+        }
+        button {
+            background: linear-gradient(45deg, #1DB954, #17a144);
+            border: none; color: white; padding: 18px 40px;
+            font-size: 1.4rem; border-radius: 50px; cursor: pointer;
+            margin: 10px; min-width: 200px; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(29,185,84,0.4);
+        }
+        button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(29,185,84,0.6); }
+        button:disabled { background: #666; cursor: not-allowed; transform: none; }
+        #confirmBtn {
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+            min-width: 150px; font-size: 1.2rem; padding: 15px 30px;
+        }
+        #confirmBtn:hover { box-shadow: 0 6px 20px rgba(255,107,53,0.6); }
+        #status { font-size: 1.3rem; font-weight: bold; margin: 20px 0; min-height: 30px; }
+        #resultsContainer {
+            text-align: left; margin-top: 30px; max-height: 500px; overflow-y: auto;
+        }
+        .file-result {
+            background: rgba(255,255,255,0.1); margin: 15px 0; padding: 20px;
+            border-radius: 15px; border-left: 5px solid #1DB954;
+        }
+        .file-result.fake { border-left-color: #e74c3c; }
+        .file-name { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+        .file-result .result { font-size: 2rem; font-weight: bold; margin: 10px 0; }
+        .download-btn { 
+            background: #3498db; padding: 8px 16px; font-size: 1rem; 
+            margin: 5px; min-width: auto;
+        }
+        .download-btn:hover { background: #2980b9; }
+        .progress-row { margin: 10px 0; }
+        progress { width: 100%; height: 20px; border-radius: 10px; }
+        #timer {
+            position: fixed; bottom: 20px; right: 20px;
+            background: rgba(0,0,0,0.9); color: #1DB954;
+            padding: 12px 16px; border-radius: 25px;
+            font-size: 1.1rem; font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        }
+        .back-link {
+            position: fixed; top: 20px; left: 20px;
+            color: #1DB954; text-decoration: none; font-size: 1.1rem;
+            padding: 10px 20px; background: rgba(0,0,0,0.5); border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">🏠 Home</a>
+    <div class="container">
+        <h2>⚡ Quick Start - Batch Upload</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">Upload up to 10 audio files at once (WAV/FLAC/MP3)</p>
+        
+        <input type="file" id="fileInput" accept=".wav,.flac,.mp3" multiple>
+        <br>
+        <button id="uploadBtn" disabled>🚀 Upload & Analyze All (Max 10)</button>
+        <button id="confirmBtn" style="display:none;">🗑️ Clear All Results</button>
+        <div id="status"></div>
+        
+        <!-- 🔥 Results Container for Multiple Files -->
+        <div id="resultsContainer"></div>
+    </div>
+
+    <div id="timer" style="display:none;">
+        Active: <span id="timeDisplay">00:00.0</span>
+    </div>
+
+    <script src="/static/ai-result.js"></script>
+    <script src="/static/actions.js"></script>
+</body>
+</html>
+

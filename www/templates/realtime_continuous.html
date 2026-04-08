@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🔴 Continuous Voice Monitor</title>
+    <style>
+        body {
+            background: url('/static/images/audio-bg.jpg') no-repeat center center fixed;
+            background-size: cover; color: white;
+            font-family: "Segoe UI", sans-serif; margin: 0; padding: 20px;
+        }
+        .container {
+            max-width: 700px; margin: 0 auto;
+            background: rgba(0,0,0,0.8); padding: 40px;
+            border-radius: 25px; text-align: center;
+        }
+        h1 { font-size: 2.2rem; text-shadow: 2px 2px 4px #000; margin-bottom: 20px; }
+        button {
+            background: linear-gradient(45deg, #1DB954, #17a144);
+            border: none; color: white; padding: 14px 30px;
+            font-size: 1.1rem; border-radius: 30px; cursor: pointer;
+            margin: 10px; min-width: 160px; transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(29,185,84,0.4);
+        }
+        button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(29,185,84,0.6); }
+        button:disabled { background: #666; cursor: not-allowed; transform: none; }
+        #stopBtn { background: linear-gradient(45deg, #FF6B35, #F7931E); }
+        #status { font-size: 1.1rem; margin: 15px 0; min-height: 24px; }
+        #resultsContainer {
+            height: 400px; overflow-y: auto; margin: 20px 0;
+            background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px;
+            text-align: left; border: 2px solid rgba(29,185,84,0.3);
+        }
+        .result-line {
+            padding: 8px 12px; margin: 4px 0; border-radius: 8px;
+            font-family: monospace; font-size: 0.95rem; display: flex; justify-content: space-between;
+        }
+        .result-real { background: rgba(46,204,113,0.2); border-left: 4px solid #2ecc71; }
+        .result-fake { background: rgba(231,76,60,0.3); border-left: 4px solid #e74c3c; }
+        .time-col { min-width: 80px; opacity: 0.8; }
+        .status-col { font-weight: bold; }
+        .prob-col { opacity: 0.9; font-size: 0.9rem; }
+        #timer { font-size: 1rem; color: #1DB954; margin-top: 10px; }
+        .back-link {
+            position: fixed; top: 20px; left: 20px;
+            color: #1DB954; text-decoration: none; font-size: 1.1rem;
+            padding: 10px 20px; background: rgba(0,0,0,0.5); border-radius: 20px;
+        }
+        #thresholdSelect {
+            padding: 6px 12px; border-radius: 8px; border: none; font-size: 1rem;
+            background: rgba(255,255,255,0.9); color: #333;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">🏠 Home</a>
+    <div class="container">
+        <h1>🔴 Continuous Voice Monitor</h1>
+        <p>永遠監聽 → 每4秒自動分析 → 滾動顯示結果 → 手動停止為止</p>
+
+        <div style="margin-bottom: 15px;">
+            <label>Threshold: </label>
+            <select id="thresholdSelect">
+                <option value="0.1">10% (敏感)</option>
+                <option value="0.3">30%</option>
+                <option value="0.5" selected>50% (保守)</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="startBtn">▶️ Start Continuous Monitor</button>
+            <button id="stopBtn" disabled>⏹ Stop Monitor</button>
+        </div>
+
+        <div id="timer">Idle</div>
+        <div id="status"></div>
+        <div id="resultsContainer">
+            <div style="opacity: 0.7; font-style: italic;">按 Start 開始連續監聽...</div>
+        </div>
+    </div>
+
+    <script src="/static/realtime_continuous.js"></script>
+</body>
+</html>
+

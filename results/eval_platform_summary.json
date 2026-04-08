@@ -1,0 +1,11 @@
+{
+  "total_files": 20,
+  "success_count": 0,
+  "failed_count": 20,
+  "success_rate": "0.0%",
+  "real_files": 10,
+  "fake_files": 10,
+  "avg_upload_time": 0.053965973854064944,
+  "avg_analyze_time": 0.0037003755569458008,
+  "avg_total_time": 0.0,
+  "min_time": 

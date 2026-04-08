@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Spoof DEMO</title>
+    <style>
+        #result { font-weight: bold; }
+        .green { color: green; }
+        .red { color: red; }
+    </style>
+</head>
+<body>
+    <h2>ASVSpoof Demo</h2>
+    <input type="file" id="fileInput">
+    <button id="uploadBtn">Upload</button>
+    <span id="uploadMsg"></span>
+    <button id="cancelBtn">Cancel</button><br>
+    <button id="submitBtn">Submit</button>
+    <div id="progressBox" style="display:none;">
+        <progress id="progressBar" value="0" max="100"></progress>
+        <button id="confirmBtn" style="display:none;">Confirm</button>
+    </div>
+    <div id="result"></div>
+    <button id="resetBtn">Reset</button>
+    <script src="/static/actions.js"></script>
+</body>
+</html>
+

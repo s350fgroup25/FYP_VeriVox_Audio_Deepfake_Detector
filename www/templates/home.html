@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASVspoof Demo</title>
+    <style>
+        body { 
+            background: url('/static/images/audio-bg.jpg') no-repeat center center fixed;
+            background-size: cover; color: white; 
+            font-family: "Segoe UI", sans-serif; margin: 0; padding: 20px;
+        }
+        .container {
+            max-width: 600px; margin: 0 auto; 
+            background: rgba(0,0,0,0.8); padding: 60px; 
+            border-radius: 25px; text-align: center;
+        }
+        h1 { font-size: 3rem; text-shadow: 3px 3px 6px #000; margin-bottom: 40px; }
+        .mode-card {
+            background: rgba(255,255,255,0.1); padding: 30px; 
+            border-radius: 20px; margin: 20px 0; cursor: pointer;
+            transition: all 0.3s; border: 2px solid transparent;
+        }
+        .mode-card:hover {
+            background: rgba(255,255,255,0.2); 
+            transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: #1DB954;
+        }
+        .mode-icon { font-size: 4rem; display: block; margin-bottom: 15px; }
+        .mode-title { font-size: 1.8rem; font-weight: bold; margin-bottom: 10px; }
+        .mode-desc { font-size: 1.1rem; opacity: 0.9; }
+        .back-link { 
+            position: fixed; top: 20px; left: 20px; 
+            color: #1DB954; text-decoration: none; 
+            font-size: 1.1rem; padding: 10px 20px;
+            background: rgba(0,0,0,0.5); border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">🏠 Home</a>
+    <div class="container">
+        <h1>🎵 ASVspoof Detector</h1>
+        <p style="font-size: 1.3rem; margin-bottom: 40px;">Select detection mode：</p>
+        
+        <div class="mode-card" onclick="window.location.href='/upload'">
+            <div class="mode-icon">⚡</div>
+            <div class="mode-title">Quick Start</div>
+            <div class="mode-desc">Select local WAV/FLAC/MP3 files for testing.</div>
+        </div>
+        
+        <div class="mode-card" onclick="window.location.href='/record'">
+            <div class="mode-icon">🎙️</div>
+            <div class="mode-title">Recording</div>
+            <div class="mode-desc">Automatically analyzes real and fake voices for 5 seconds of recording.</div>
+        </div>
+	<!-- 在 Recording 卡片後面加這段 -->
+	<div class="mode-card" onclick="window.location.href='/convert'">
+   	    <div class="mode-icon">🔄</div>
+    	    <div class="mode-title">Convert Audio</div>
+	    <div class="mode-desc">Convert M4A/MP3/WebM to 16kHz WAV for testing.</div>
+	</div>
+	<!-- home.html 在 Convert 卡片後加 -->
+	<div class="mode-card" onclick="window.location.href='/fake'">
+	    <div class="mode-icon">🧪</div>
+	    <div class="mode-title">Generate Fake</div>
+	    <div class="mode-desc">Text → TTS fake audio (16kHz WAV).</div>
+	</div>
+	<div class="mode-card" onclick="window.location.href='/video2audio'">
+	    <div class="mode-icon">🎬</div>
+	    <div class="mode-title">Video → Audio</div>
+	    <div class="mode-desc">Upload MP4/MOV and extract audio as MP3/WAV.</div>
+	</div>
+        <!-- 🔴 New: Realtime Monitor -->
+        <div class="mode-card" onclick="window.location.href='/realtime_continuous'">
+            <div class="mode-icon">🔴</div>
+            <div class="mode-title">Realtime Monitor</div>
+            <div class="mode-desc">
+                Continuously listen every 4 seconds and instantly flag FAKE speech.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

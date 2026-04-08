@@ -1,7 +1,7 @@
 # 数据集（太大，不上传）
 asvspoof2021/
 datasets/
-
+S_audio/
 # 模型文件（太大）
 *.safetensors
 *.bin

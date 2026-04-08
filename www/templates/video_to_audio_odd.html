@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Video to Audio Converter</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
+    .container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; }
+    label { display: block; margin-top: 10px; }
+    button { margin-top: 15px; padding: 8px 16px; margin-right: 10px; }
+    #result { margin-top: 20px; white-space: pre-line; }
+    .audio-section { margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 8px; display: none; }
+    .audio-controls { margin-top: 10px; }
+    .play-btn { background: #1DB954; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    .play-btn:hover { background: #1ed760; }
+    audio { width: 100%; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Video to Audio Converter</h2>
+
+    <!-- Convert & Download form -->
+    <form id="download-form" action="/video2audio/convert" method="post" enctype="multipart/form-data">
+      <label>
+        Select video file (MP4, MOV, MKV, WEBM):
+        <input id="video-file" type="file" name="video" accept="video/*" required />
+      </label>
+
+      <label>
+        Output format:
+        <select name="format">
+          <option value="mp3">MP3</option>
+          <option value="wav" selected>WAV</option>
+        </select>
+      </label>
+
+      <button type="submit">Convert & Download</button>
+    </form>
+
+    <!-- Convert + Analyze + Play buttons -->
+    <button id="analyze-btn" type="button">Convert & Analyze</button>
+
+    <!-- Audio player section (hidden initially) -->
+    <div id="audio-section" class="audio-section">
+      <h4>Converted Audio:</h4>
+      <div class="audio-controls">
+        <button id="play-btn" class="play-btn">▶️ Play Audio</button>
+        <audio id="audio-player" controls></audio>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const videoInput = document.getElementById('video-file');
+    const resultDiv = document.getElementById('result');
+    const audioSection = document.getElementById('audio-section');
+    const playBtn = document.getElementById('play-btn');
+    const audioPlayer = document.getElementById('audio-player');
+
+    let currentAudioFilename = null;
+
+    analyzeBtn.addEventListener('click', async () => {
+      resultDiv.textContent = '';
+      audioSection.style.display = 'none';
+      currentAudioFilename = null;
+
+      if (!videoInput.files.length) {
+        alert('Please choose a video file first.');
+        return;
+      }
+
+      const file = videoInput.files[0];
+      const formData = new FormData();
+      formData.append('video', file);
+      formData.append('format', 'wav');  // force wav for analysis
+
+      try {
+        resultDiv.textContent = 'Converting video...';
+
+        // Step 1: convert video → audio (API)
+        const convResp = await fetch('/video2audio/convert_api', {
+          method: 'POST',
+          body: formData
+        });
+        const convData = await convResp.json();
+
+        if (!convData.success) {
+          resultDiv.textContent = 'Convert error: ' + (convData.error || 'Unknown error');
+          return;
+        }
+
+        currentAudioFilename = convData.filename;
+        const audioUrl = `/download/${currentAudioFilename}`;
+
+        // Show audio player
+        audioSection.style.display = 'block';
+        audioPlayer.src = audioUrl;
+        playBtn.onclick = () => audioPlayer.play();
+
+        resultDiv.textContent = 'Convert successful! Ready for analysis...';
+
+        // Step 2: analyze the audio
+        const analyzeResp = await fetch('/analyze', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ filename: currentAudioFilename })
+        });
+        const analyzeData = await analyzeResp.json();
+
+        if (!analyzeData.success) {
+          resultDiv.textContent += '\n\nAnalyze error: ' + (analyzeData.error || 'Unknown error');
+          return;
+        }
+
+        const resultObj = JSON.parse(analyzeData.result);
+        const text =
+          `🎬 Analysis result:\n` +
+          `Real probability: ${(resultObj.prob_real * 100).toFixed(1)}%\n` +
+          `Fake probability: ${(resultObj.prob_fake * 100).toFixed(1)}%\n` +
+          `Final label: ${resultObj.label ? '✅ Real' : '❌ Fake'}`;
+
+        resultDiv.textContent = text;
+
+      } catch (err) {
+        console.error(err);
+        resultDiv.textContent = 'Unexpected error: ' + err;
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,77 @@
+nontarget_scores[nontarget_position] is 3 2.5550487e-11
+target_scores[target_position] is 1 1.0
+threshold  1.0
+Equal Error Rate (EER): 0.5
+Per-sample details:
+Sample 1:
+ file_name: sample_000000.wav
+ predicted_label: 1
+ ground_truth_label: 1
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 2:
+ file_name: sample_000001.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 3:
+ file_name: sample_000002.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 4:
+ file_name: sample_000003.wav
+ predicted_label: 1
+ ground_truth_label: 1
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 5:
+ file_name: sample_000004.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 6:
+ file_name: sample_000005.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 7:
+ file_name: sample_000006.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 8:
+ file_name: sample_000007.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 9:
+ file_name: sample_000008.wav
+ predicted_label: 0
+ ground_truth_label: 0
+ correct: True
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Sample 10:
+ file_name: sample_000009.wav
+ predicted_label: 1
+ ground_truth_label: 0
+ correct: False
+ runtime_ms: 2532.210
+ audio_duration_ms: None
+Total samples evaluated: 10
+Total evaluation time (s): 25.322

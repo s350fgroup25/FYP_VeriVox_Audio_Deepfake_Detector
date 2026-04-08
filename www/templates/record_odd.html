@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASVspoof Recorder</title>
+    <style>
+        /* 你現有的樣式保持不變 */
+        body { background: url('/static/images/audio-bg.jpg') no-repeat center center fixed; background-size: cover; color: white; font-family: "Segoe UI", sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 500px; margin: 0 auto; background: rgba(0,0,0,0.7); padding: 40px; border-radius: 20px; text-align: center; }
+        h2 { font-size: 2.5rem; text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
+        #recordBtn, #retryBtn { background: linear-gradient(45deg, #1DB954, #17a144); border: none; color: white; padding: 18px 40px; font-size: 1.4rem; border-radius: 50px; cursor: pointer; margin: 10px; min-width: 200px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(29,185,84,0.4); }
+        #recordBtn:disabled, #retryBtn:disabled { background: #666; cursor: not-allowed; }
+        #status { font-size: 1.3rem; font-weight: bold; margin: 20px 0; min-height: 30px; }
+        #result { font-size: 4rem; font-weight: bold; margin: 30px 0; text-shadow: 3px 3px 6px #000; min-height: 80px; }
+        .green { color: #2ecc71 !important; }
+        .red { color: #e74c3c !important; }
+        progress { width: 100%; height: 25px; border-radius: 12px; margin: 20px 0; }
+        #timer { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.9); color: #1DB954; padding: 12px 16px; border-radius: 25px; font-size: 1.1rem; font-weight: bold; box-shadow: 0 6px 20px rgba(0,0,0,0.6); user-select: none; min-width: 140px; border: 2px solid rgba(29,185,84,0.3); }
+        #diagnostics { background: rgba(255,0,0,0.2); padding: 15px; border-radius: 10px; margin: 10px 0; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🎙️ ASVspoof Recorder</h2>
+        <div id="diagnostics"></div>
+        <button id="recordBtn">🎤 Start 5s Recording</button>
+        <button id="retryBtn" style="display:none;">🔁 Record Again</button>
+        <div id="status"></div>
+        <progress id="progressBar" value="0" max="100" style="display:none;"></progress>
+        <div id="result"></div>
+    </div>
+    
+    <div id="timer">Processing: <span id="timeDisplay">00:00.0</span></div>
+
+    <script src="/static/record_actions.js"></script>
+</body>
+</html>
+

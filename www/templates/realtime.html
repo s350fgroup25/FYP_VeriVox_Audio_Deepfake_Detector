@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Realtime Voice Monitor</title>
+    <style>
+        body {
+            background: url('/static/images/audio-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+        button {
+            background: linear-gradient(45deg, #1DB954, #17a144);
+            border: none;
+            color: white;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px;
+            min-width: 160px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(29,185,84,0.4);
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(29,185,84,0.6);
+        }
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        #stopBtn {
+            background: linear-gradient(45deg, #FF6B35, #F7931E);
+        }
+        #confirmBtn {
+            background: linear-gradient(45deg, #FFC107, #FF9800);
+        }
+        #status {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            min-height: 24px;
+        }
+        #result {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 25px 0;
+            text-shadow: 3px 3px 6px #000;
+            min-height: 70px;
+        }
+        .green { color: #2ecc71; }
+        .red { color: #e74c3c; }
+        #lastFile {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        #timer {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #1DB954;
+        }
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #1DB954;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 20px;
+        }
+        #thresholdSelect {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.95rem;
+        }
+        label {
+            font-size: 0.95rem;
+        }
+        audio {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-link">🏠 Home</a>
+    <div class="container">
+        <h1>🔴 Realtime Voice Monitor</h1>
+        <p>每 4 秒錄一段外界聲音並即時分析，偵測到 Fake 會立刻停下並顯示。</p>
+
+        <!-- Threshold 選單 -->
+        <div style="margin-bottom: 15px;">
+            <label for="thresholdSelect">
+                Detection threshold (Real % must be &gt;=):
+            </label>
+            <select id="thresholdSelect">
+                <option value="0.1">10% (敏感)</option>
+                <option value="0.3">30%</option>
+                <option value="0.5" selected>50% (保守)</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="startBtn">▶️ Start Monitor</button>
+            <button id="stopBtn" disabled>⏹ Stop</button>
+            <button id="confirmBtn" style="display:none;">✅ Confirm & Restart</button>
+        </div>
+
+        <div id="timer">Idle</div>
+        <div id="status"></div>
+        <div id="result"></div>
+        <div id="lastFile"></div>
+        <audio id="previewAudio" controls style="display:none;"></audio>
+    </div>
+
+    <script src="/static/realtime_monitor.js"></script>
+</body>
+</html>
+
