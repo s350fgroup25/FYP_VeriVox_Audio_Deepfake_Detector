@@ -16,6 +16,7 @@ This project implements an **audio deepfake detection system** capable of identi
 ---
 
 ## Project Structure
+```text
 asvspoof/
 │
 ├── app.py                       # Flask web server entry point
