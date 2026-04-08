@@ -1,6 +1,3 @@
-Here is a cleaned-up Markdown version you can paste directly into `nano` as `README.md`:
-
-```markdown
 # ASVspoof Audio Deepfake Detection System
 
 A WavLM-based audio deepfake detection web application deployed on Raspberry Pi.
@@ -19,8 +16,6 @@ This project implements an **audio deepfake detection system** capable of identi
 ---
 
 ## Project Structure
-
-```text
 asvspoof/
 │
 ├── app.py                       # Flask web server entry point
