@@ -19,9 +19,10 @@ This project implements an **audio deepfake detection system** capable of identi
 **Click the image above or [click here](https://youtu.be/svC8c3vcg5Y) to watch the demo.**
 
 ## Demo Video
-[![VeriVox Audio Deepfake Detector Demo](https://img.youtube.com/vi/svC8c3vcg5Y/0.jpg)](https://youtu.be/svC8c3vcg5Y)
+[![VeriVox Audio Deepfake Detector Demo](https://img.youtube.com/vi/QKt2yc6FTww/0.jpg)](https://www.youtube.com/watch?v=QKt2yc6FTww)
 
-**Click the image above or [click here](https://youtu.be/svC8c3vcg5Y) to watch the demo.**
+**Click the image above or [click here](https://www.youtube.com/watch?v=QKt2yc6FTww) to watch the demo.**
+
 ---
 
 ## Project Structure
