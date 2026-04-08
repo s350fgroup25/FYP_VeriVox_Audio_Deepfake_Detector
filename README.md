@@ -1,7 +1,14 @@
+## Author
+
+- Name: Yu Ching Ting   
+- Project: ASVspoof Audio Deepfake Detection System  
+- Date: April 2026  
+
 # Audio Deepfake Detection System
 
 A WavLM-based audio deepfake detection web application deployed on Raspberry Pi.
 
+---
 ## Project Overview
 
 This project implements an **audio deepfake detection system** capable of identifying Logical Access (LA) and Deepfake (DF) attacks. The system uses the ASVspoof 2019 dataset for initial model training and the more authoritative ASVspoof 2021 dataset for final evaluation.
@@ -314,16 +321,5 @@ Results are saved as CSV and JSON files in the `results/` directory.
 
 ---
 
-## Author
 
-- Name: Yu Ching Ting   
-- Project: ASVspoof Audio Deepfake Detection System  
-- Date: April 2026  
 
----
-
-## License
-
-To be added.
-
----
