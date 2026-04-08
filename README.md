@@ -18,11 +18,14 @@ This project implements an **audio deepfake detection system** capable of identi
 
 **Click the image above or [click here](https://youtu.be/svC8c3vcg5Y) to watch the demo.**
 
-## Demo Video
+## Demo Video (Simple)
 [![VeriVox Audio Deepfake Detector Demo](https://img.youtube.com/vi/QKt2yc6FTww/0.jpg)](https://www.youtube.com/watch?v=QKt2yc6FTww)
 
 **Click the image above or [click here](https://www.youtube.com/watch?v=QKt2yc6FTww) to watch the demo.**
 
+## web interface screenshot
+<img width="960" height="1032" alt="image" src="https://github.com/user-attachments/assets/54f41679-35f1-4440-84fe-becf58282ef9" />
+<img width="971" height="236" alt="image" src="https://github.com/user-attachments/assets/9112616e-7fd6-4360-85ab-355526cf62e4" />
 ---
 
 ## Project Structure
@@ -219,6 +222,7 @@ pydub>=0.25.0
 2. Click “Choose File” to upload audio (WAV/FLAC/MP3)  
 3. Click “Detect”  
 4. System returns “Genuine” or “Fake” result with confidence score  
+
 
 ### Batch Evaluation
 
