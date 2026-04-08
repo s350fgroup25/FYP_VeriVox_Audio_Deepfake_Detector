@@ -23,18 +23,62 @@ This project implements an **audio deepfake detection system** capable of identi
 
 **Click the image above or [click here](https://www.youtube.com/watch?v=QKt2yc6FTww) to watch the demo.**
 
-## web interface screenshot
+## app.py - Main Flask Server Detailed Documentation
+### Overview
+`app.py` is the **core backend server** that handles all web requests, model inference, audio processing, and file management.
+
+**Key Features:**
+- 📁 **Upload Storage**: All user-uploaded audio files
+- 🎵 **Generated Audio**: TTS-generated fake audio
+- 🔄 **Converted Files**: Video-to-audio conversion output
+- 🗑️ **Auto-Cleanup**: `cleanup_s_audio()` keeps ONLY the latest file
+- ⚡ **Real-time Processing**: Files are analyzed then automatically removed
+### Server Configuration
 <img width="960" height="1032" alt="image" src="https://github.com/user-attachments/assets/54f41679-35f1-4440-84fe-becf58282ef9" />
 <img width="971" height="236" alt="image" src="https://github.com/user-attachments/assets/9112616e-7fd6-4360-85ab-355526cf62e4" />
+
+## API Endpoints
+
+### Overview
+
+| Route        | Method     | Description           | Key Feature                  |
+|-------------|------------|-----------------------|------------------------------|
+| `/`         | GET        | Home page             | Serves `home.html`           |
+| `/upload`   | GET / POST | File upload & handler | Saves uploaded file to `S_audio` |
+| `/record`   | GET        | Recording interface   | Real-time microphone input   |
+| `/convert`  | GET / POST | Audio conversion      | Supports various formats     |
+| `/fake`     | GET        | Fake audio page       | TTS + detection workflow     |
+| `/tts`      | POST       | Text-to-speech        | Generates fake audio         |
+| `/analyze`  | POST       | Core detection API    | Runs WavLM deepfake model    |
+| `/video2audio` | GET / POST | Video conversion   | Extracts audio from video    |
+| `/realtime` | GET        | Real-time monitor     | Continuous detection         |
+| `/delete_temp` | POST    | Manual cleanup        | Deletes temporary files      |
+
+### Core Functions
+
+- `/upload`: Receives uploaded audio file, saves to `S_audio`, and triggers server-side preprocessing if needed.  
+- `/record`: Serves the browser-based recording UI for capturing microphone input.  
+- `/convert`: Converts uploaded audio to a standard format compatible with the detection model.  
+- `/fake` and `/tts`: Generate synthetic speech from text and optionally run detection on the generated audio.  
+- `/analyze`: Main JSON API used by the frontend to run the WavLM model and return deepfake scores.  
+- `/video2audio`: Extracts audio track from video for subsequent deepfake analysis.  
+- `/realtime`: Streams short audio segments from the client for near real-time spoofing detection.  
+- `/delete_temp`: Cleans up temporary audio and intermediate files created during processing.  
 ---
 
 ## Project Structure
 ```text
 asvspoof/
 │
-├── app.py                       # Flask web server entry point
-├── program/                     # Core program code
+├── S_audio/ # 🔥 CRITICAL: Audio storage with auto-cleanup
+│   ├── .gitkeep # Preserves directory structure
+│   ├── *.flac, *.wav, *.mp3 # Uploaded and generated audio files
+│   └── [auto-deleted] # System keeps only latest file
+│
+├── program/
+│   ├── app.py # 🔥 MAIN FLASK SERVER (see detailed docs below)
 │   ├── model.py                 # WavLM model loading and inference
+│   ├── model.safetensors # ⚠️ Model weights (download separately)
 │   ├── model_sentence1.py       # Sentence-level detection model v1
 │   ├── model_sentence2.py       # Sentence-level detection model v2
 │   ├── eval_platform.py         # Main evaluation platform
