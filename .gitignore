@@ -1,0 +1,39 @@
+# 数据集（太大，不上传）
+asvspoof2021/
+datasets/
+
+# 模型文件（太大）
+*.safetensors
+*.bin
+*.pth
+*.pt
+*.h5
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pycache
+
+# 虚拟环境
+venv2_asvspoof/
+venv/
+env/
+ENV/
+
+# 证书文件（敏感信息）
+*.pem
+cert.pem
+
+# 日志和临时文件
+*.log
+*.tmp
+.DS_Store
+*.swp
+
+# 结果文件（可选，如果想上传结果可以删除下面这行）
+# results/  # 如果你想让 results 上传，就在这行前面加 # 注释掉
+
+# IDE 配置
+.vscode/
+.idea/
