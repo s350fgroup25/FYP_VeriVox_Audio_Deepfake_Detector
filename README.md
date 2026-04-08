@@ -11,7 +11,7 @@ A WavLM-based audio deepfake detection web application deployed on Raspberry Pi.
 ---
 ## Project Overview
 
-This project implements an **audio deepfake detection system** capable of identifying Logical Access (LA) and Deepfake (DF) attacks. The system uses the ASVspoof 2019 dataset for initial model training and the more authoritative ASVspoof 2021 dataset for final evaluation.
+This project implements an **audio deepfake detection system** capable of identifying Logical Access (LA) and Deepfake (DF) attacks using WavLM-based models on a lightweight Flask web server deployed to Raspberry Pi. The backend exposes REST-style API endpoints for upload, text-to-speech, video-to-audio conversion, and real-time analysis, while the frontend provides an intuitive browser interface for both experts and non-technical users.
 
 ### Key Features
 
@@ -19,6 +19,7 @@ This project implements an **audio deepfake detection system** capable of identi
 - 🎙️ **Real-time Recording**: Detect fake audio through microphone input  
 - 📊 **Batch Evaluation**: Large-scale dataset evaluation with EER calculation  
 - 📈 **Result Visualization**: Generate detection reports and charts  
+- 🧩 **Rich API Endpoints**: `/upload`, `/analyze`, `/tts`, `/video2audio`, `/realtime`, and more for easy integration into other systems  
 
 ## Introduction Video (Project Video)
 [![Introduction of VeriVox Audio Deepfake Detector](https://img.youtube.com/vi/svC8c3vcg5Y/0.jpg)](https://youtu.be/svC8c3vcg5Y)
